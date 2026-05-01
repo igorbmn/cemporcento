@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100% gente | Consultoria com Propósito</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 
+                        primary: 'var(--primary)', 
+                        secondary: 'var(--secondary)', 
+                        accent: 'var(--accent)', 
+                        accent_light: 'var(--accentLight)',
+                        accent_red: 'var(--accentRed)',
+                        warm: 'var(--warm)',
+                        light_blue: 'var(--lightBlue)',
+                        soft_gray: 'var(--softGray)'
+                    },
+                    fontFamily: { sans: ['var(--fontFamily)', 'Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --primary: #1B435B;
+            --secondary: #FFCC00;
+            --accent: #FF9933;
+            --accentLight: #FF6633;
+            --accentRed: #990000;
+            --warm: #f9f6f0;
+            --lightBlue: #e8f0f5;
+            --softGray: #f0eeeb;
+            --sectionPadding: 96px;
+            --globalPadding: 16px;
+            --borderRadius: 16px;
+            --fontSizeBase: 16px;
+            --headingScale: 1;
+            --cardShadow: 0 4px 15px rgba(27,67,91,0.04);
+            --cardShadowHover: 0 20px 50px rgba(27,67,91,0.12);
+            --bgOpacity: 1;
+            --textOpacity: 0.55;
+            --heroMinHeight: 100vh;
+            --cardGap: 32px;
+            --navHeight: 72px;
+            --fontFamily: 'Inter';
+        }
+
+        * { scroll-behavior: smooth; }
+        body { 
+            font-family: var(--fontFamily), 'Inter', sans-serif; 
+            background: #ffffff; 
+            color: var(--primary);
+            font-size: var(--fontSizeBase);
+        }
+
+        .nav-scrolled { 
+            background: rgba(255,255,255,0.97)!important; 
+            backdrop-filter:blur(12px); 
+            box-shadow: 0 2px 20px rgba(27,67,91,0.08); 
+        }
+        .nav-link { color: var(--primary); transition: color 0.3s; }
+        .nav-link:hover { color: var(--accent); }
+
+        .hero-section { 
+            background: linear-gradient(160deg, #ffffff 0%, var(--warm) 40%, var(--lightBlue) 100%); 
+            min-height: var(--heroMinHeight);
+        }
+        .hero-overlay-circle {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(27,67,91,0.06), rgba(27,67,91,0.02));
+            top: -100px;
+            right: -200px;
+        }
+        .hero-overlay-circle2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,204,0,0.08), rgba(255,153,51,0.04));
+            bottom: -50px;
+            left: -150px;
+        }
+
+        .gradient-text { 
+            background: linear-gradient(135deg, var(--accent), var(--accentLight)); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            font-weight: 700; 
+        }
+        .gold-line { width: 60px; height: 3px; background: linear-gradient(90deg, var(--secondary), var(--accent)); border-radius: 2px; }
+
+        .card-hover { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .card-hover:hover { transform: translateY(-10px); box-shadow: var(--cardShadowHover); }
+
+        .service-card-light { 
+            background: #ffffff; 
+            border: 1px solid rgba(27,67,91,0.08); 
+            transition: all 0.3s ease; 
+            box-shadow: var(--cardShadow);
+            border-radius: var(--borderRadius);
+        }
+        .service-card-light:hover { 
+            border-color: rgba(255,153,51,0.4); 
+            box-shadow: 0 12px 40px rgba(27,67,91,0.1); 
+        }
+
+        .btn-primary { 
+            background: linear-gradient(135deg, var(--accent), var(--accentLight)); 
+            transition: all 0.3s; 
+            color: #ffffff; 
+            font-weight: 700; 
+            box-shadow: 0 4px 15px rgba(255,153,51,0.3);
+            border-radius: var(--borderRadius);
+        }
+        .btn-primary:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 30px rgba(255,153,51,0.45); 
+        }
+
+        .btn-outline { 
+            border: 2px solid var(--primary); 
+            color: var(--primary); 
+            transition: all 0.3s; 
+            font-weight: 600; 
+            border-radius: var(--borderRadius);
+        }
+        .btn-outline:hover { 
+            background: var(--primary); 
+            color: #ffffff; 
+        }
+
+        .input-field { 
+            background: #ffffff; 
+            border: 2px solid rgba(27,67,91,0.12); 
+            color: var(--primary); 
+            transition: all 0.3s;
+            border-radius: calc(var(--borderRadius) * 0.5);
+        }
+        .input-field:focus { 
+            border-color: var(--accent); 
+            outline: none; 
+            box-shadow: 0 0 0 4px rgba(255,153,51,0.12); 
+        }
+        .input-field::placeholder { color: #9ca3af; }
+
+        .mobile-menu { transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+        .mobile-menu.open { transform: translateX(0); }
+
+        .stat-number { color: var(--accent); font-weight: 800; }
+        .whatsapp-float { 
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px; 
+            z-index: 999; 
+            animation: bounce 2s infinite; 
+            box-shadow: 0 6px 25px rgba(34,197,94,0.4);
+        }
+        @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+        .pulse-dot { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{transform:scale(0.95);opacity:1} 50%{transform:scale(1.2);opacity:0.6} }
+        .fade-up { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        .quote-card-light { 
+            background: #ffffff; 
+            border-left: 4px solid var(--accent); 
+            box-shadow: 0 4px 20px rgba(27,67,91,0.06);
+            border-radius: var(--borderRadius);
+        }
+
+        .purpose-badge { background: rgba(27,67,91,0.06); border: 1px solid rgba(27,67,91,0.1); }
+
+        .accent-bar { 
+            height: 4px; 
+            background: linear-gradient(90deg, var(--secondary) 33%, var(--accent) 66%, var(--accentLight) 100%); 
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--warm); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--primary), var(--accent)); border-radius: 4px; }
+
+        .tag-pill { 
+            background: rgba(255,153,51,0.1); 
+            color: var(--accentLight); 
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            padding: 0.25rem 0.75rem; 
+            border-radius: 9999px; 
+            border: 1px solid rgba(255,153,51,0.2); 
+        }
+
+        .bg-pattern {
+            background-image: radial-gradient(circle at 2px 2px, rgba(27,67,91,0.04) 1px, transparent 0);
+            background-size: 30px 30px;
+        }
+
+        .team-img-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+        .team-img-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: 20%;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to top, var(--primary), transparent);
+        }
+
+        .hero-image-frame {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(27,67,91,0.12);
+        }
+        .hero-image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 95% center;
+            display: block;
+        }
+
+        /* ==================== DESIGN TOOL ==================== */
+        #designTool {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 380px;
+            height: 100vh;
+            background: #1a1a2e;
+            color: #e0e0e0;
+            z-index: 10000;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.3);
+            font-family: 'Inter', sans-serif;
+        }
+        #designTool.open { transform: translateX(0); }
+
+        #toolToggle {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            z-index: 10001;
+            background: linear-gradient(135deg, #6C5CE7, #a855f7);
+            color: white;
+            border: none;
+            width: 44px;
+            height: 80px;
+            border-radius: 12px 0 0 12px;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: -4px 0 20px rgba(108,92,231,0.4);
+        }
+        #toolToggle:hover { width: 52px; }
+        #toolToggle.shifted { right: 380px; }
+
+        .tool-header {
+            background: linear-gradient(135deg, #6C5CE7, #a855f7);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .tool-header h3 { color: white; font-size: 16px; font-weight: 700; }
+        .tool-close { background: rgba(255,255,255,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; }
+        .tool-close:hover { background: rgba(255,255,255,0.3); }
+
+        .tool-section {
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 16px 24px;
+        }
+        .tool-section-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #a855f7;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .tool-section-title svg { transition: transform 0.3s; }
+        .tool-section-title.collapsed svg { transform: rotate(-90deg); }
+        .tool-section-content { overflow: hidden; transition: max-height 0.4s ease; }
+        .tool-section-content.collapsed { max-height: 0 !important; overflow: hidden; }
+
+        .tool-control {
+            margin-bottom: 16px;
+        }
+        .tool-control:last-child { margin-bottom: 0; }
+        .tool-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .tool-label span { font-size: 12px; color: #a0a0b8; font-weight: 500; }
+        .tool-label .tool-value {
+            font-size: 11px;
+            color: #6C5CE7;
+            font-weight: 700;
+            background: rgba(108,92,231,0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .tool-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255,255,255,0.1);
+            outline: none;
+            transition: background 0.2s;
+        }
+        .tool-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6C5CE7, #a855f7);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(108,92,231,0.4);
+            transition: transform 0.2s;
+        }
+        .tool-slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+        .tool-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6C5CE7, #a855f7);
+            cursor: pointer;
+            border: none;
+        }
+
+        .tool-color-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .tool-color-input {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            background: none;
+            padding: 0;
+            overflow: hidden;
+        }
+        .tool-color-input::-webkit-color-swatch-wrapper { padding: 0; }
+        .tool-color-input::-webkit-color-swatch { border: none; border-radius: 8px; }
+        .tool-color-info { flex: 1; }
+        .tool-color-info .color-name { font-size: 12px; font-weight: 600; color: #e0e0e0; }
+        .tool-color-info .color-hex { font-size: 11px; color: #888; font-family: 'Courier New', monospace; }
+
+        .tool-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+        .tool-btn-reset {
+            background: rgba(239,68,68,0.15);
+            color: #ef4444;
+            width: 100%;
+        }
+        .tool-btn-reset:hover { background: rgba(239,68,68,0.25); }
+        .tool-btn-export {
+            background: rgba(108,92,231,0.15);
+            color: #a855f7;
+            width: 100%;
+        }
+        .tool-btn-export:hover { background: rgba(108,92,231,0.25); }
+
+        .tool-select {
+            width: 100%;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: #e0e0e0;
+            font-size: 12px;
+            outline: none;
+            cursor: pointer;
+        }
+        .tool-select:focus { border-color: #6C5CE7; }
+        .tool-select option { background: #1a1a2e; color: #e0e0e0; }
+
+        .tool-toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+        .tool-toggle-label { font-size: 12px; color: #a0a0b8; }
+        .tool-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+        }
+        .tool-switch input { opacity: 0; width: 0; height: 0; }
+        .tool-switch-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+        .tool-switch-slider:before {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .tool-switch input:checked + .tool-switch-slider { background: #6C5CE7; }
+        .tool-switch input:checked + .tool-switch-slider:before { transform: translateX(20px); }
+
+        .tool-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.06);
+            margin: 12px 0;
+        }
+
+        #toolOverlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.3);
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        #toolOverlay.show { opacity: 1; pointer-events: all; }
+
+        @media (max-width: 480px) {
+            #designTool { width: 100vw; }
+            #toolToggle.shifted { right: 100vw; }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- TOOL OVERLAY -->
+    <div id="toolOverlay"></div>
+
+    <!-- TOOL TOGGLE BUTTON -->
+    <button id="toolToggle" class="shifted" title="Abrir Painel de Design">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+    </button>
+
+    <!-- DESIGN TOOL PANEL -->
+    <div id="designTool">
+        <div class="tool-header">
+            <h3>🎨 Design Studio</h3>
+            <button class="tool-close" id="toolClose">&times;</button>
+        </div>
+
+        <!-- COLORS -->
+        <div class="tool-section">
+            <div class="tool-section-title" data-section="colors">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                Cores
+            </div>
+            <div class="tool-section-content" id="sec-colors">
+                <div class="tool-color-row">
+                    <input type="color" class="tool-color-input" id="color-primary" value="#1B435B">
+                    <div class="tool-color-info">
+                        <div class="color-name">Primary</div>
+                        <div class="color-hex" id="hex-primary">#1B435B</div>
+                    </div>
+                </div>
+                <div class="tool-color-row">
+                    <input type="color" class="tool-color-input" id="color-secondary" value="#FFCC00">
+                    <div class="tool-color-info">
+                        <div class="color-name">Secondary</div>
+                        <div class="color-hex" id="hex-secondary">#FFCC00</div>
+                    </div>
+                </div>
+                <div class="tool-color-row">
+                    <input type="color" class="tool-color-input" id="color-accent" value="#FF9933">
+                    <div class="tool-color-info">
+                        <div class="color-name">Accent</div>
+                        <div class="color-hex" id="hex-accent">#FF9933</div>
+                    </div>
+                </div>
+                <div class="tool-color-row">
+                    <input type="color" class="tool-color-input" id="color-accentLight" value="#FF6633">
+                    <div class="tool-color-info">
+                        <div class="color-name">Accent Light</div>
+                        <div class="color-hex" id="hex-accentLight">#FF6633</div>
+                    </div>
+                </div>
+                <div class="tool-color-row">
+                    <input type="color" class="tool-color-input" id="color-accentRed" value="#990000">
+                    <div class="tool-color-info">
+                        <div class="color-name">Accent Red</div>
+                        <div class="color-hex" id="hex-accentRed">#990000</div>
+                    </div>
+                </div>
+                <div class="tool-color-row">
+                    <input type="color" class="tool-color-input" id="color-warm" value="#f9f6f0">
+                    <div class="tool-color-info">
+                        <div class="color-name">Warm Background</div>
+                        <div class="color-hex" id="hex-warm">#f9f6f0</div>
+                    </div>
+                </div>
+                <div class="tool-color-row">
+                    <input type="color" class="tool-color-input" id="color-lightBlue" value="#e8f0f5">
+                    <div class="tool-color-info">
+                        <div class="color-name">Light Blue</div>
+                        <div class="color-hex" id="hex-lightBlue">#e8f0f5</div>
+                    </div>
+                </div>
+                <div class="tool-color-row">
+                    <input type="color" class="tool-color-input" id="color-softGray" value="#f0eeeb">
+                    <div class="tool-color-info">
+                        <div class="color-name">Soft Gray</div>
+                        <div class="color-hex" id="hex-softGray">#f0eeeb</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPACING -->
+        <div class="tool-section">
+            <div class="tool-section-title" data-section="spacing">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v18"/></svg>
+                Espaçamento
+            </div>
+            <div class="tool-section-content" id="sec-spacing">
+                <div class="tool-control">
+                    <div class="tool-label">
+                        <span>Padding das Seções</span>
+                        <span class="tool-value" id="val-sectionPadding">96px</span>
+                    </div>
+                    <input type="range" class="tool-slider" id="slider-sectionPadding" min="24" max="200" value="96" step="1">
+                </div>
+                <div class="tool-control">
+                    <div class="tool-label">
+                        <span>Padding Global (container)</span>
+                        <span class="tool-value" id="val-globalPadding">16px</span>
+                    </div>
+                    <input type="range" class="tool-slider" id="slider-globalPadding" min="0" max="64" value="16" step="1">
+                </div>
+                <div class="tool-control">
+                    <div class="tool-label">
+                        <span>Gap entre Cards</span>
+                        <span class="tool-value" id="val-cardGap">32px</span>
+                    </div>
+                    <input type="range" class="tool-slider" id="slider-cardGap" min="8" max="64" value="32" step="1">
+                </div>
+                <div class="tool-control">
+                    <div class="tool-label">
+                        <span>Altura da Navbar</span>
+                        <span class="tool-value" id="val-navHeight">72px</span>
+                    </div>
+                    <input type="range" class="tool-slider" id="slider-navHeight" min="48" max="120" value="72" step="1">
+                </div>
+                <div class="tool-control">
+                    <div class="tool-label">
+                        <span>Hero Min-Height</span>
+                        <span class="tool-value" id="val-heroMinHeight">100vh</span>
+                    </div>
+                    <input type="range" class="tool-slider" id="slider-heroMinHeight" min="50" max="150" value="100" step="1">
+                </div>
+            </div>
+        </div>
+
+        <!-- TYPOGRAPHY -->
+        <div class="tool-section">
+            <div class="tool-section-title" data-section="typography">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+                Tipografia
+            </div>
+            <div class="tool-section-content" id="sec-typography">
+                <div class="tool-control">
+                    <div class="tool-label">
+                        <span>Fonte</span>
+                    </div>
+                    <select class="tool-select" id="select-fontFamily">
+                        <option value="Inter" selected>Inter</option>
+                        <option value="Poppins">Poppins</option>
+                        <option value="Roboto">Roboto</option>
+                        <option value="Playfair Display">Playfair Display</option>
+                        <option value="Montserrat">Montserrat</option>
+                        <option value="Lato">Lato</option>
+                        <option value="Nunito">Nunito</option>
+                    </select>
+                </div>
+                <div class="tool-control">
+                    <div class="tool-label">
+                        <span>Tamanho Base</span>
+                        <span class="tool-value" id="val-fontSizeBase">16px</span>
+                    </div>
+                    <input type="range" class="tool-slider" id="slider-fontSizeBase" min="12" max="20" value="16" step="1">
+                </div>
+                <div class="tool-control">
+                    <div class="tool-label">
+                        <span>Escala de Títulos</span>
+                        <span class="tool-value" id="val-headingScale">1.00</span>
+                    </div>
+                    <input type="range" class="tool-slider" id="slider-headingScale" min="0.7" max="1.4" value="1" step="0.05">
+                </div>
+                <div class="tool-control">
+                    <div class="tool-label">
+                        <span>Opacidade do Texto Secundário</span>
+                        <span class="tool-value" id="val-textOpacity">0.55</span>
+                    </div>
+                    <input type="range" class="tool-slider" id="slider-textOpacity" min="0.1" max="1" value="0.55" step="0.05">
+                </div>
+            </div>
+        </div>
+
+        <!-- BORDERS & SHADOWS -->
+        <div class="tool-section">
+            <div class="tool-section-title" data-section="borders">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>
+                Bordas & Sombras
+            </div>
+            <div class="tool-section-content" id="sec-borders">
+                <div class="tool-control">
+                    <div class="tool-label">
+                        <span>Border Radius (Cards)</span>
+                        <span class="tool-value" id="val-borderRadius">16px</span>
+                    </div>
+                    <input type="range" class="tool-slider" id="slider-borderRadius" min="0" max="48" value="16" step="1">
+                </div>
+                <div class="tool-control">
+                    <div class="tool-label">
+                        <span>Intensidade da Sombra</span>
+                        <span class="tool-value" id="val-shadowIntensity">0.04</span>
+                    </div>
+                    <input type="range" class="tool-slider" id="slider-shadowIntensity" min="0" max="0.2" value="0.04" step="0.01">
+                </div>
+                <div class="tool-control">
+                    <div class="tool-label">
+                        <span>Intensidade Sombra Hover</span>
+                        <span class="tool-value" id="val-shadowHover">0.12</span>
+                    </div>
+                    <input type="range" class="tool-slider" id="slider-shadowHover" min="0" max="0.3" value="0.12" step="0.01">
+                </div>
+            </div>
+        </div>
+
+        <!-- EFFECTS -->
+        <div class="tool-section">
+            <div class="tool-section-title" data-section="effects">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                Efeitos & Animações
+            </div>
+            <div class="tool-section-content" id="sec-effects">
+                <div class="tool-toggle-row">
+                    <span class="tool-toggle-label">Animação Fade-Up</span>
+                    <label class="tool-switch">
+                        <input type="checkbox" id="toggle-fadeUp" checked>
+                        <span class="tool-switch-slider"></span>
+                    </label>
+                </div>
+                <div class="tool-toggle-row">
+                    <span class="tool-toggle-label">Card Hover Effect</span>
+                    <label class="tool-switch">
+                        <input type="checkbox" id="toggle-cardHover" checked>
+                        <span class="tool-switch-slider"></span>
+                    </label>
+                </div>
+                <div class="tool-toggle-row">
+                    <span class="tool-toggle-label">WhatsApp Float</span>
+                    <label class="tool-switch">
+                        <input type="checkbox" id="toggle-whatsapp" checked>
+                        <span class="tool-switch-slider"></span>
+                    </label>
+                </div>
+                <div class="tool-toggle-row">
+                    <span class="tool-toggle-label">Pattern de Fundo</span>
+                    <label class="tool-switch">
+                        <input type="checkbox" id="toggle-pattern" checked>
+                        <span class="tool-switch-slider"></span>
+                    </label>
+                </div>
+                <div class="tool-control" style="margin-top: 12px;">
+                    <div class="tool-label">
+                        <span>Velocidade das Transições</span>
+                        <span class="tool-value" id="val-transitionSpeed">0.3s</span>
+                    </div>
+                    <input type="range" class="tool-slider" id="slider-transitionSpeed" min="0.1" max="1" value="0.3" step="0.05">
+                </div>
+                <div class="tool-control">
+                    <div class="tool-label">
+                        <span>Opacidade do Background</span>
+                        <span class="tool-value" id="val-bgOpacity">1.00</span>
+                    </div>
+                    <input type="range" class="tool-slider" id="slider-bgOpacity" min="0.5" max="1" value="1" step="0.05">
+                </div>
+            </div>
+        </div>
+
+        <!-- LAYOUT -->
+        <div class="tool-section">
+            <div class="tool-section-title" data-section="layout">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                Layout
+            </div>
+            <div class="tool-section-content" id="sec-layout">
+                <div class="tool-control">
+                    <div class="tool-label">
+                        <span>Max-Width do Container</span>
+                        <span class="tool-value" id="val-maxWidth">1280px</span>
+                    </div>
+                    <input type="range" class="tool-slider" id="slider-maxWidth" min="960" max="1600" value="1280" step="10">
+                </div>
+                <div class="tool-toggle-row">
+                    <span class="tool-toggle-label">Hero Imagem (Desktop)</span>
+                    <label class="tool-switch">
+                        <input type="checkbox" id="toggle-heroImage" checked>
+                        <span class="tool-switch-slider"></span>
+                    </label>
+                </div>
+                <div class="tool-toggle-row">
+                    <span class="tool-toggle-label">Gradiente do Hero</span>
+                    <label class="tool-switch">
+                        <input type="checkbox" id="toggle-heroGradient" checked>
+                        <span class="tool-switch-slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXPORT / RESET -->
+        <div class="tool-section">
+            <div class="tool-section-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Ações
+            </div>
+            <div class="tool-section-content">
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <button class="tool-btn tool-btn-export" id="btn-export">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+                        Exportar CSS
+                    </button>
+                    <button class="tool-btn tool-btn-reset" id="btn-reset">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                        Resetar Tudo
+                    </button>
+                </div>
+                <div id="exportArea" class="hidden mt-3">
+                    <textarea id="exportCSS" class="w-full h-32 bg-black/30 text-green-400 font-mono text-xs p-3 rounded-lg resize-none" readonly></textarea>
+                    <button class="tool-btn tool-btn-export mt-2" id="btn-copy" style="font-size: 11px;">Copiar CSS</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-white/80 backdrop-blur-sm" style="height: var(--navHeight);">
+        <div class="accent-bar w-full"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full" style="padding-left: var(--globalPadding); padding-right: var(--globalPadding);">
+            <div class="flex items-center justify-between h-full" style="padding: 12px 0;">
+                <a href="#home" class="flex items-center space-x-2">
+                    <img src="resources/LOGO%20100%25GENTE%20FINALIZADO%20-CORES.png" alt="100% gente" class="h-10 object-contain">
+                </a>
+                <div class="hidden lg:flex items-center space-x-10">
+                    <a href="#home" class="text-sm font-medium nav-link">Início</a>
+                    <a href="#philosophy" class="text-sm font-medium nav-link">Filosofia</a>
+                    <a href="#services" class="text-sm font-medium nav-link">Soluções</a>
+                    <a href="#team" class="text-sm font-medium nav-link">Equipe</a>
+                    <a href="#contact" class="btn-primary px-6 py-2.5 rounded-full text-sm">Conectar</a>
+                </div>
+                <button id="menuBtn" class="lg:hidden flex flex-col space-y-1.5 p-2">
+                    <span class="block w-6 h-0.5 transition-all" id="bar1" style="background: var(--primary);"></span>
+                    <span class="block w-6 h-0.5 transition-all" id="bar2" style="background: var(--primary);"></span>
+                    <span class="block w-4 h-0.5 transition-all ml-auto" id="bar3" style="background: var(--accent);"></span>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white z-50 p-8 shadow-2xl border-l border-primary/10">
+            <button id="closeMenu" class="absolute top-6 right-6 text-3xl font-light" style="color: var(--primary);">&times;</button>
+            <div class="mt-16 space-y-6">
+                <a href="#home" class="block text-lg font-medium text-primary hover:text-accent transition">Início</a>
+                <a href="#philosophy" class="block text-lg font-medium text-primary hover:text-accent transition">Filosofia</a>
+                <a href="#services" class="block text-lg font-medium text-primary hover:text-accent transition">Soluções</a>
+                <a href="#team" class="block text-lg font-medium text-primary hover:text-accent transition">Equipe</a>
+                <a href="#contact" class="block btn-primary px-6 py-3 rounded-full text-center text-sm mt-8">Conectar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home" class="hero-section relative flex items-center pt-24">
+        <div class="hero-overlay-circle"></div>
+        <div class="hero-overlay-circle2"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="padding: 80px var(--globalPadding);">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div>
+                    <div class="inline-flex items-center space-x-2 purpose-badge rounded-full px-4 py-2 mb-8">
+                        <span class="w-2 h-2 rounded-full pulse-dot" style="background: var(--accentLight);"></span>
+                        <span class="text-sm font-semibold" style="color: var(--accentLight);">Negócios são feitos de pessoas</span>
+                    </div>
+                    <h1 id="heroTitle" class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6" style="color: var(--primary);">
+                        Entender <span class="gradient-text">pessoas</span> é o que transforma <span class="gradient-text">negócios</span>
+                    </h1>
+                    <blockquote class="quote-card-light rounded-r-lg p-5 mb-8">
+                        <p class="text-base sm:text-lg italic leading-relaxed" style="color: rgba(27,67,91,0.75);">
+                            "100% dos clientes são pessoas. 100% dos funcionários são pessoas. Se você não entende de pessoas, você não entende de negócios."
+                        </p>
+                        <footer class="mt-3 font-bold" style="color: var(--accent);">— Simon Sinek</footer>
+                    </blockquote>
+                    <p class="text-base sm:text-lg mb-8 max-w-xl leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">
+                        Na <strong style="color: var(--primary);">100% gente</strong>, acreditamos que estratégias só funcionam quando colocam o ser humano no centro. Oferecemos consultoria com propósito para empresas que querem crescer sem perder a essência.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-start">
+                        <a href="#contact" class="btn-primary px-8 py-4 rounded-full text-sm text-center">Vamos Conversar</a>
+                        <a href="#philosophy" class="btn-outline px-8 py-4 rounded-full text-sm text-center">Nossa Filosofia</a>
+                    </div>
+                    <div class="flex items-center justify-start space-x-8 mt-12">
+                        <div><div class="text-3xl font-extrabold stat-number counter" data-target="500">0</div><div class="text-sm mt-1" style="color: rgba(27,67,91, var(--textOpacity));">Pessoas Impactadas</div></div>
+                        <div class="w-px h-12" style="background: rgba(27,67,91,0.1);"></div>
+                        <div><div class="text-3xl font-extrabold stat-number counter" data-target="25">0</div><div class="text-sm mt-1" style="color: rgba(27,67,91, var(--textOpacity));">Anos de Propósito</div></div>
+                        <div class="w-px h-12" style="background: rgba(27,67,91,0.1);"></div>
+                        <div><div class="text-3xl font-extrabold stat-number counter" data-target="98">0</div><div class="text-sm mt-1" style="color: rgba(27,67,91, var(--textOpacity));">% de Conexão</div></div>
+                    </div>
+                </div>
+                <div id="heroImageCol" class="hidden lg:block relative">
+                    <div class="w-full aspect-square hero-image-frame transform -rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <img src="resources/facebookcover.png" alt="100% gente - Conexão, Empatia, Humanização">
+                    </div>
+                    <div class="absolute -top-4 -right-4 w-20 h-20 rounded-full animate-pulse" style="background: rgba(255,204,0,0.2);"></div>
+                    <div class="absolute -bottom-6 -left-6 w-16 h-16 rounded-full animate-pulse" style="background: rgba(255,153,51,0.15); animation-delay: 1s;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section id="philosophy" class="bg-pattern" style="padding: var(--sectionPadding) 0;">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style="padding-left: var(--globalPadding); padding-right: var(--globalPadding);">
+            <div class="fade-up">
+                <span class="tag-pill mb-4 inline-block">Nosso Porquê</span>
+                <h2 class="mt-4 mb-10 font-extrabold" style="font-size: calc(1.875rem * var(--headingScale)); color: var(--primary);">Por que <span class="gradient-text">100% gente</span>?</h2>
+                
+                <div class="quote-card-light rounded-2xl p-8 md:p-14 mb-16 max-w-4xl mx-auto relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 rounded-full -translate-y-1/2 translate-x-1/2" style="background: rgba(255,204,0,0.05);"></div>
+                    <svg class="w-14 h-14 mx-auto mb-6" style="color: rgba(255,153,51,0.3);" fill="currentColor" viewBox="0 0 24 24"><path d="M14 17h3l2-4V7h-6v6H7v-2H4v6h3v-2h3v4zm-4-6H7V9h3v2zm8 0h-3V9h3v2z"/></svg>
+                    <p class="italic leading-relaxed font-light" style="font-size: calc(1.25rem * var(--headingScale)); color: rgba(27,67,91,0.8);">
+                        "100% dos clientes são pessoas. 100% dos funcionários são pessoas. Se você não entende de pessoas, você não entende de negócios."
+                    </p>
+                    <footer class="mt-8 font-extrabold text-lg" style="color: var(--accent);">— Simon Sinek</footer>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 mt-12" style="gap: var(--cardGap);">
+                    <div class="service-card-light p-8 fade-up text-left">
+                        <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5 shadow-md" style="background: linear-gradient(135deg, var(--secondary), var(--accent)); box-shadow: 0 4px 15px rgba(255,204,0,0.2);">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--primary);">Empatia Estratégica</h3>
+                        <p class="text-sm leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Entendemos dores, sonhos e motivações para criar soluções que realmente fazem sentido.</p>
+                    </div>
+                    <div class="service-card-light p-8 fade-up text-left">
+                        <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5 shadow-md" style="background: linear-gradient(135deg, var(--accent), var(--accentLight)); box-shadow: 0 4px 15px rgba(255,153,51,0.2);">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--primary);">Propósito com Resultado</h3>
+                        <p class="text-sm leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Unimos significado e performance: negócios que crescem fazendo bem às pessoas.</p>
+                    </div>
+                    <div class="service-card-light p-8 fade-up text-left">
+                        <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5 shadow-md" style="background: linear-gradient(135deg, var(--primary), rgba(27,67,91,0.8)); box-shadow: 0 4px 15px rgba(27,67,91,0.2);">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--primary);">Cultura que Transforma</h3>
+                        <p class="text-sm leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Fortalecemos conexões humanas para construir ambientes onde pessoas e negócios prosperam.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" style="padding: var(--sectionPadding) 0; background: rgba(232,240,245,0.4);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="padding-left: var(--globalPadding); padding-right: var(--globalPadding);">
+            <div class="text-center mb-16 fade-up">
+                <span class="tag-pill mb-4 inline-block">Nossas Soluções</span>
+                <h2 class="mt-4 mb-4 font-extrabold" style="font-size: calc(1.875rem * var(--headingScale)); color: var(--primary);">Estratégia com <span class="gradient-text">alma humana</span></h2>
+                <div class="gold-line mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Cada serviço é desenhado para conectar propósito, pessoas e performance — porque resultados duradouros nascem de relações autênticas.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3" style="gap: var(--cardGap);">
+                <div class="service-card-light p-8 card-hover fade-up">
+                    <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6 shadow-md" style="background: linear-gradient(135deg, var(--accent), var(--accentLight)); box-shadow: 0 4px 15px rgba(255,153,51,0.2);">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--primary);">Planejamento Estratégico Humanizado</h3>
+                    <p class="text-sm leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Alinhamos visão, missão e valores com metas tangíveis, garantindo que cada decisão honre as pessoas que fazem a empresa acontecer.</p>
+                </div>
+                <div class="service-card-light p-8 card-hover fade-up">
+                    <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6 shadow-md" style="background: linear-gradient(135deg, var(--secondary), var(--accent)); box-shadow: 0 4px 15px rgba(255,204,0,0.2);">
+                        <svg class="w-7 h-7" style="color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--primary);">Recursos Humanos com Propósito</h3>
+                    <p class="text-sm leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Gestão de pessoas que valoriza potencial, escuta ativa e desenvolvimento integral — porque talentos florescem onde há sentido.</p>
+                </div>
+                <div class="service-card-light p-8 card-hover fade-up">
+                    <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6 shadow-md" style="background: linear-gradient(135deg, var(--primary), rgba(27,67,91,0.7)); box-shadow: 0 4px 15px rgba(27,67,91,0.2);">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--primary);">Empreendedorismo Consciente</h3>
+                    <p class="text-sm leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Apoiamos empreendedores a transformar desafios em oportunidades com ética, resiliência e impacto positivo nas comunidades.</p>
+                </div>
+                <div class="service-card-light p-8 card-hover fade-up">
+                    <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6 shadow-md" style="background: linear-gradient(135deg, var(--accentLight), var(--accentRed)); box-shadow: 0 4px 15px rgba(255,102,51,0.2);">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--primary);">Educação Corporativa Transformadora</h3>
+                    <p class="text-sm leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Capacitação que desenvolve habilidades técnicas e humanas, preparando equipes para liderar com empatia e inteligência emocional.</p>
+                </div>
+                <div class="service-card-light p-8 card-hover fade-up">
+                    <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6 shadow-md" style="background: linear-gradient(135deg, rgba(255,204,0,0.8), var(--secondary)); box-shadow: 0 4px 15px rgba(255,204,0,0.2);">
+                        <svg class="w-7 h-7" style="color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--primary);">Liderança Servidora</h3>
+                    <p class="text-sm leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Formamos líderes que inspiram pelo exemplo, cultivam confiança e criam culturas onde cada pessoa se sente vista e valorizada.</p>
+                </div>
+                <div class="service-card-light p-8 card-hover fade-up">
+                    <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6 shadow-md" style="background: linear-gradient(135deg, var(--accentRed), rgba(153,0,0,0.8)); box-shadow: 0 4px 15px rgba(153,0,0,0.2);">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--primary);">ESG com Essência Humana</h3>
+                    <p class="text-sm leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Implementamos práticas de sustentabilidade e governança que colocam pessoas e planeta no centro da estratégia empresarial.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="relative overflow-hidden" style="padding: 80px 0; background: var(--primary);">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-40 h-40 border rounded-full" style="border-color: rgba(255,204,0,0.3);"></div>
+            <div class="absolute bottom-10 right-20 w-60 h-60 border rounded-full" style="border-color: rgba(255,153,51,0.2);"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 border rounded-full" style="border-color: rgba(255,255,255,0.05);"></div>
+        </div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 fade-up" style="padding-left: var(--globalPadding); padding-right: var(--globalPadding);">
+            <h2 class="font-extrabold text-white mb-6" style="font-size: calc(1.875rem * var(--headingScale));">Pronto para transformar <br class="hidden sm:block">sua empresa <span style="color: var(--secondary);">de verdade</span>?</h2>
+            <p class="text-white/65 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">Comece com uma conversa. Sem compromisso, sem pressão. Apenas uma troca genuína sobre o que sua empresa pode se tornar.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact" class="btn-primary px-10 py-4 rounded-full text-sm">Iniciar Conversa</a>
+                <a href="https://wa.me/5581996340089" target="_blank" class="px-8 py-4 rounded-full text-sm font-bold border-2 border-white/30 text-white hover:bg-white/10 transition inline-flex items-center justify-center space-x-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <span>WhatsApp Direto</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team" style="padding: var(--sectionPadding) 0; background: #ffffff;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="padding-left: var(--globalPadding); padding-right: var(--globalPadding);">
+            <div class="text-center mb-16 fade-up">
+                <span class="tag-pill mb-4 inline-block">Quem Faz Acontecer</span>
+                <h2 class="mt-4 mb-4 font-extrabold" style="font-size: calc(1.875rem * var(--headingScale)); color: var(--primary);">Pessoas <span class="gradient-text">por trás do propósito</span></h2>
+                <div class="gold-line mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Nossa equipe é formada por profissionais que acreditam que excelência técnica e sensibilidade humana andam juntas.</p>
+            </div>
+            <div class="grid md:grid-cols-3" style="gap: var(--cardGap);">
+                <div class="service-card-light overflow-hidden card-hover fade-up group">
+                    <div class="team-img-wrapper h-80 flex items-center justify-center" style="background: linear-gradient(135deg, var(--primary), rgba(27,67,91,0.6));">
+                        <img src="resources/Vilani.png" alt="Vilani Batista" class="w-full h-full object-cover relative z-10 group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-7 relative">
+                        <div class="absolute top-0 left-7 w-12 h-1 rounded-full -translate-y-1/2" style="background: linear-gradient(90deg, var(--secondary), var(--accent));"></div>
+                        <h3 class="text-xl font-extrabold" style="color: var(--primary);">Vilani Batista</h3>
+                        <p class="text-sm font-semibold mb-3" style="color: var(--accent);">Sócio Diretor | Propósito & Estratégia</p>
+                        <p class="text-sm leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Especialista em conectar visão de negócio com desenvolvimento humano. Atua em Empreendedorismo, Planejamento Estratégico e RH com foco em Coaching e Transformação Cultural.</p>
+                        <div class="flex space-x-2 mt-4">
+                            <span class="tag-pill">Estratégia</span>
+                            <span class="tag-pill">Coaching</span>
+                            <span class="tag-pill">RH</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card-light overflow-hidden card-hover fade-up group">
+                    <div class="h-80 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(27,67,91,0.8), rgba(255,153,51,0.3));">
+                        <svg class="w-24 h-24" style="color: rgba(255,204,0,0.4);" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <div class="p-7 relative">
+                        <div class="absolute top-0 left-7 w-12 h-1 rounded-full -translate-y-1/2" style="background: linear-gradient(90deg, var(--accent), var(--accentLight));"></div>
+                        <h3 class="text-xl font-extrabold" style="color: var(--primary);">Ana Carolina</h3>
+                        <p class="text-sm font-semibold mb-3" style="color: var(--accent);">Gerente Contábil | Números com Significado</p>
+                        <p class="text-sm leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Especialista em traduzir dados financeiros em insights humanos. Acredita que contabilidade estratégica é ferramenta para tomar decisões que valorizam pessoas e sustentabilidade.</p>
+                        <div class="flex space-x-2 mt-4">
+                            <span class="tag-pill">Contábil</span>
+                            <span class="tag-pill">Financeiro</span>
+                            <span class="tag-pill">Insights</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card-light overflow-hidden card-hover fade-up group">
+                    <div class="h-80 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(27,67,91,0.6), rgba(255,102,51,0.3));">
+                        <svg class="w-24 h-24" style="color: rgba(255,102,51,0.4);" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <div class="p-7 relative">
+                        <div class="absolute top-0 left-7 w-12 h-1 rounded-full -translate-y-1/2" style="background: linear-gradient(90deg, var(--accentLight), var(--accentRed));"></div>
+                        <h3 class="text-xl font-extrabold" style="color: var(--primary);">Rafael Mendes</h3>
+                        <p class="text-sm font-semibold mb-3" style="color: var(--accent);">Consultor Tributário | Ética & Conformidade</p>
+                        <p class="text-sm leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Advogado tributarista que vê compliance como expressão de respeito. Focado em recuperação de créditos com transparência e governança que protege pessoas e negócios.</p>
+                        <div class="flex space-x-2 mt-4">
+                            <span class="tag-pill">Tributário</span>
+                            <span class="tag-pill">Compliance</span>
+                            <span class="tag-pill">Ética</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section style="padding: 80px 0; background: var(--softGray);">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8" style="padding-left: var(--globalPadding); padding-right: var(--globalPadding);">
+            <div class="text-center mb-12 fade-up">
+                <span class="tag-pill mb-4 inline-block">O que dizem</span>
+                <h2 class="mt-4 font-extrabold" style="font-size: calc(1.875rem * var(--headingScale)); color: var(--primary);">Impacto <span class="gradient-text">real</span></h2>
+            </div>
+            <div class="grid md:grid-cols-2" style="gap: var(--cardGap);">
+                <div class="service-card-light p-8 fade-up">
+                    <div class="flex space-x-1 mb-4">
+                        <svg class="w-5 h-5" style="color: var(--secondary);" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5" style="color: var(--secondary);" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5" style="color: var(--secondary);" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5" style="color: var(--secondary);" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5" style="color: var(--secondary);" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-sm italic leading-relaxed mb-4" style="color: rgba(27,67,91,0.7);">"A 100% gente nos ajudou a enxergar que por trás de cada número existe uma história. Nossa equipe nunca esteve tão engajada."</p>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(27,67,91,0.1);">
+                            <span class="font-bold text-sm" style="color: var(--primary);">MC</span>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold" style="color: var(--primary);">Maria Clara</p>
+                            <p class="text-xs" style="color: rgba(27,67,91, var(--textOpacity));">CEO — Tech Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card-light p-8 fade-up">
+                    <div class="flex space-x-1 mb-4">
+                        <svg class="w-5 h-5" style="color: var(--secondary);" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5" style="color: var(--secondary);" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5" style="color: var(--secondary);" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5" style="color: var(--secondary);" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5" style="color: var(--secondary);" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-sm italic leading-relaxed mb-4" style="color: rgba(27,67,91,0.7);">"A consultoria mudou nossa cultura organizacional. Hoje temos processos claros e pessoas felizes — os resultados vieram naturalmente."</p>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(27,67,91,0.1);">
+                            <span class="font-bold text-sm" style="color: var(--primary);">JP</span>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold" style="color: var(--primary);">João Paulo</p>
+                            <p class="text-xs" style="color: rgba(27,67,91, var(--textOpacity));">Fundador — Grupo Horizonte</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="bg-pattern" style="padding: var(--sectionPadding) 0;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="padding-left: var(--globalPadding); padding-right: var(--globalPadding);">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="fade-up">
+                    <span class="tag-pill mb-4 inline-block">Conexão</span>
+                    <h2 class="mt-4 mb-6 font-extrabold" style="font-size: calc(1.875rem * var(--headingScale)); color: var(--primary);">Vamos construir algo <span class="gradient-text">significativo juntos</span></h2>
+                    <div class="gold-line mb-6"></div>
+                    <p class="mb-10 leading-relaxed text-lg" style="color: rgba(27,67,91, var(--textOpacity));">Cada conversa é um novo começo. Conte-nos sobre seu desafio, seu sonho, sua equipe. Respondemos com escuta ativa em até 24 horas úteis.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 border border-primary/10" style="background: rgba(27,67,91,0.05);">
+                                <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold uppercase tracking-wider" style="color: rgba(27,67,91, var(--textOpacity));">Telefone</p>
+                                <a href="tel:+5581996340089" class="font-semibold hover:text-accent transition" style="color: var(--primary);">(81) 99634-0089</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 border border-primary/10" style="background: rgba(27,67,91,0.05);">
+                                <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold uppercase tracking-wider" style="color: rgba(27,67,91, var(--textOpacity));">E-mail</p>
+                                <a href="mailto:contato@100porcentogente.com.br" class="font-semibold hover:text-accent transition" style="color: var(--primary);">contato@100porcentogente.com.br</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 border border-primary/10" style="background: rgba(27,67,91,0.05);">
+                                <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold uppercase tracking-wider" style="color: rgba(27,67,91, var(--textOpacity));">Localização</p>
+                                <span class="font-semibold" style="color: var(--primary);">Recife, PE — Brasil</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-10 p-6 purpose-badge rounded-xl border-l-4" style="border-left-color: var(--accent);">
+                        <p class="text-sm italic leading-relaxed" style="color: rgba(27,67,91,0.7);">
+                            "Mais do que consultoria, oferecemos parceria para empresas que querem crescer sem perder a humanidade."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-up">
+                    <form class="service-card-light p-8 space-y-5" onsubmit="handleSubmit(event)">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color: rgba(27,67,91, var(--textOpacity));">Nome</label>
+                                <input type="text" placeholder="Seu nome" class="input-field w-full p-3.5 rounded-lg text-sm" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color: rgba(27,67,91, var(--textOpacity));">E-mail</label>
+                                <input type="email" placeholder="seu@email.com" class="input-field w-full p-3.5 rounded-lg text-sm" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color: rgba(27,67,91, var(--textOpacity));">Assunto</label>
+                            <input type="text" placeholder="Como podemos ajudar?" class="input-field w-full p-3.5 rounded-lg text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color: rgba(27,67,91, var(--textOpacity));">Mensagem</label>
+                            <textarea rows="4" placeholder="Conte um pouco sobre seu desafio ou sonho..." class="input-field w-full p-3.5 rounded-lg text-sm resize-none" required></textarea>
+                        </div>
+                        <button type="submit" id="submitBtn" class="btn-primary w-full py-4 rounded-lg text-sm">
+                            <span id="btnText">Enviar</span>
+                            <span id="btnLoading" class="hidden">Enviando...</span>
+                        </button>
+                        <div id="successMsg" class="hidden text-center p-4 bg-green-50 rounded-lg border border-green-200">
+                            <p class="text-green-700 text-sm font-semibold">✓ Obrigado por conectar! Entraremos em contato com carinho e propósito em breve.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="text-white py-16 relative overflow-hidden" style="background: var(--primary);">
+        <div class="absolute top-0 left-0 right-0 h-1" style="background: linear-gradient(90deg, var(--secondary), var(--accent), var(--accentLight));"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="padding-left: var(--globalPadding); padding-right: var(--globalPadding);">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <img src="resources/LOGO%20100%25GENTE%20FINALIZADO%20-CORES.png" alt="100% gente" class="h-10 object-contain mb-4 brightness-0 invert">
+                    <p class="text-white/50 text-sm leading-relaxed mb-4">Consultoria estratégica com propósito. Porque negócios são feitos de pessoas, para pessoas.</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-secondary/20 transition">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="#" class="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-secondary/20 transition">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="#" class="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-secondary/20 transition">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider mb-4" style="color: var(--secondary);">Navegação</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-white/50 hover:text-white text-sm transition">Início</a></li>
+                        <li><a href="#philosophy" class="text-white/50 hover:text-white text-sm transition">Filosofia</a></li>
+                        <li><a href="#services" class="text-white/50 hover:text-white text-sm transition">Soluções</a></li>
+                        <li><a href="#team" class="text-white/50 hover:text-white text-sm transition">Equipe</a></li>
+                        <li><a href="#contact" class="text-white/50 hover:text-white text-sm transition">Contato</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider mb-4" style="color: var(--secondary);">Soluções</h4>
+                    <ul class="space-y-3">
+                        <li><span class="text-white/50 text-sm">Planejamento Estratégico</span></li>
+                        <li><span class="text-white/50 text-sm">Recursos Humanos</span></li>
+                        <li><span class="text-white/50 text-sm">Empreendedorismo</span></li>
+                        <li><span class="text-white/50 text-sm">Educação Corporativa</span></li>
+                        <li><span class="text-white/50 text-sm">Liderança Servidora</span></li>
+                        <li><span class="text-white/50 text-sm">ESG</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 text-center">
+                <blockquote class="italic text-sm mb-4 max-w-lg mx-auto" style="color: rgba(255,204,0,0.8);">
+                    "Se você não entende de pessoas, você não entende de negócios." — Simon Sinek
+                </blockquote>
+                <p class="text-white/30 text-xs">© <span id="year"></span> 100% gente. Todos os direitos reservados. Feito com ♥ e propósito.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/5581996340089" target="_blank" id="whatsappBtn" class="whatsapp-float w-14 h-14 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition group" aria-label="Converse conosco no WhatsApp">
+        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('nav-scrolled', window.scrollY > 30);
+        });
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenu = document.getElementById('closeMenu');
+        const toggleMenu = () => mobileMenu.classList.toggle('open');
+        menuBtn.addEventListener('click', toggleMenu);
+        closeMenu.addEventListener('click', toggleMenu);
+        document.querySelectorAll('#mobileMenu a').forEach(link => link.addEventListener('click', toggleMenu));
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Counter animation
+        const counters = document.querySelectorAll('.counter');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.getAttribute('data-target');
+                    const increment = target / 60;
+                    let current = 0;
+                    const update = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.textContent = Math.ceil(current);
+                            requestAnimationFrame(update);
+                        } else {
+                            if (target === 98) counter.textContent = target + '%';
+                            else if (target === 500) counter.textContent = target + '+';
+                            else counter.textContent = target + '+';
+                        }
+                    };
+                    update();
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(c => counterObserver.observe(c));
+
+        // Form submission
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btnText = document.getElementById('btnText');
+            const btnLoading = document.getElementById('btnLoading');
+            const successMsg = document.getElementById('successMsg');
+            
+            btnText.classList.add('hidden');
+            btnLoading.classList.remove('hidden');
+            
+            setTimeout(() => {
+                btnText.classList.remove('hidden');
+                btnLoading.classList.add('hidden');
+                successMsg.classList.remove('hidden');
+                e.target.reset();
+                
+                setTimeout(() => {
+                    successMsg.classList.add('hidden');
+                }, 5000);
+            }, 1500);
+        }
+
+        // ==================== DESIGN TOOL ====================
+        const root = document.documentElement;
+        const designTool = document.getElementById('designTool');
+        const toolToggle = document.getElementById('toolToggle');
+        const toolClose = document.getElementById('toolClose');
+        const toolOverlay = document.getElementById('toolOverlay');
+
+        function openTool() {
+            designTool.classList.add('open');
+            toolToggle.classList.add('shifted');
+            toolOverlay.classList.add('show');
+        }
+        function closeTool() {
+            designTool.classList.remove('open');
+            toolToggle.classList.remove('shifted');
+            toolOverlay.classList.remove('show');
+        }
+
+        toolToggle.addEventListener('click', () => {
+            if (designTool.classList.contains('open')) closeTool();
+            else openTool();
+        });
+        toolClose.addEventListener('click', closeTool);
+        toolOverlay.addEventListener('click', closeTool);
+
+        // Section collapse
+        document.querySelectorAll('.tool-section-title[data-section]').forEach(title => {
+            title.addEventListener('click', () => {
+                const content = document.getElementById('sec-' + title.dataset.section);
+                title.classList.toggle('collapsed');
+                content.classList.toggle('collapsed');
+            });
+        });
+
+        // Color controls
+        const colorDefaults = {
+            primary: '#1B435B',
+            secondary: '#FFCC00',
+            accent: '#FF9933',
+            accentLight: '#FF6633',
+            accentRed: '#990000',
+            warm: '#f9f6f0',
+            lightBlue: '#e8f0f5',
+            softGray: '#f0eeeb'
+        };
+
+        const cssVarMap = {
+            primary: '--primary',
+            secondary: '--secondary',
+            accent: '--accent',
+            accentLight: '--accentLight',
+            accentRed: '--accentRed',
+            warm: '--warm',
+            lightBlue: '--lightBlue',
+            softGray: '--softGray'
+        };
+
+        Object.keys(colorDefaults).forEach(name => {
+            const input = document.getElementById('color-' + name);
+            const hexDisplay = document.getElementById('hex-' + name);
+            
+            input.addEventListener('input', (e) => {
+                const val = e.target.value;
+                root.style.setProperty(cssVarMap[name], val);
+                hexDisplay.textContent = val;
+            });
+        });
+
+        // Slider controls
+        const sliderConfig = [
+            { id: 'sectionPadding', cssVar: '--sectionPadding', display: 'val-sectionPadding', suffix: 'px', apply: (val) => {
+                document.querySelectorAll('section[id]').forEach(sec => {
+                    if (sec.id !== 'home') sec.style.padding = `${val}px 0`;
+                });
+            }},
+            { id: 'globalPadding', cssVar: '--globalPadding', display: 'val-globalPadding', suffix: 'px' },
+            { id: 'borderRadius', cssVar: '--borderRadius', display: 'val-borderRadius', suffix: 'px' },
+            { id: 'fontSizeBase', cssVar: '--fontSizeBase', display: 'val-fontSizeBase', suffix: 'px' },
+            { id: 'headingScale', cssVar: '--headingScale', display: 'val-headingScale', suffix: '', format: (v) => parseFloat(v).toFixed(2) },
+            { id: 'textOpacity', cssVar: '--textOpacity', display: 'val-textOpacity', suffix: '', format: (v) => parseFloat(v).toFixed(2) },
+            { id: 'heroMinHeight', cssVar: '--heroMinHeight', display: 'val-heroMinHeight', suffix: 'vh' },
+            { id: 'cardGap', cssVar: '--cardGap', display: 'val-cardGap', suffix: 'px' },
+            { id: 'navHeight', cssVar: '--navHeight', display: 'val-navHeight', suffix: 'px' },
+            { id: 'bgOpacity', cssVar: '--bgOpacity', display: 'val-bgOpacity', suffix: '', format: (v) => parseFloat(v).toFixed(2) },
+            { id: 'maxWidth', cssVar: null, display: 'val-maxWidth', suffix: 'px', apply: (val) => {
+                document.querySelectorAll('.max-w-7xl, .max-w-6xl, .max-w-5xl, .max-w-4xl').forEach(el => {
+                    el.style.maxWidth = val + 'px';
+                });
+            }},
+            { id: 'shadowIntensity', cssVar: null, display: 'val-shadowIntensity', suffix: '', format: (v) => parseFloat(v).toFixed(2), apply: (val) => {
+                const color = getComputedStyle(root).getPropertyValue('--primary').trim() || '#1B435B';
+                root.style.setProperty('--cardShadow', `0 4px 15px ${hexToRgba(color, val)}`);
+            }},
+            { id: 'shadowHover', cssVar: null, display: 'val-shadowHover', suffix: '', format: (v) => parseFloat(v).toFixed(2), apply: (val) => {
+                const color = getComputedStyle(root).getPropertyValue('--primary').trim() || '#1B435B';
+                root.style.setProperty('--cardShadowHover', `0 20px 50px ${hexToRgba(color, val)}`);
+            }},
+            { id: 'transitionSpeed', cssVar: null, display: 'val-transitionSpeed', suffix: 's', format: (v) => parseFloat(v).toFixed(2), apply: (val) => {
+                document.querySelectorAll('.card-hover, .btn-primary, .btn-outline, .input-field, .nav-link, .service-card-light').forEach(el => {
+                    el.style.transitionDuration = val + 's';
+                });
+            }}
+        ];
+
+        function hexToRgba(hex, alpha) {
+            hex = hex.replace('#', '');
+            const r = parseInt(hex.substring(0, 2), 16);
+            const g = parseInt(hex.substring(2, 4), 16);
+            const b = parseInt(hex.substring(4, 6), 16);
+            return `rgba(${r},${g},${b},${alpha})`;
+        }
+
+        sliderConfig.forEach(config => {
+            const slider = document.getElementById('slider-' + config.id);
+            if (!slider) return;
+            
+            slider.addEventListener('input', (e) => {
+                const val = e.target.value;
+                const displayVal = config.format ? config.format(val) : val;
+                document.getElementById(config.display).textContent = displayVal + (config.suffix || '');
+                
+                if (config.cssVar) {
+                    root.style.setProperty(config.cssVar, val + (config.suffix === 'vh' ? 'vh' : config.suffix || ''));
+                }
+                if (config.apply) {
+                    config.apply(val + (config.suffix || ''));
+                }
+            });
+        });
+
+        // Font family
+        document.getElementById('select-fontFamily').addEventListener('change', (e) => {
+            const font = e.target.value;
+            const link = document.createElement('link');
+            link.href = `https://fonts.googleapis.com/css2?family=${font.replace(/ /g, '+')}:wght@300;400;500;600;700;800&display=swap`;
+            link.rel = 'stylesheet';
+            document.head.appendChild(link);
+            root.style.setProperty('--fontFamily', font);
+            document.body.style.fontFamily = `'${font}', sans-serif`;
+        });
+
+        // Toggles
+        document.getElementById('toggle-fadeUp').addEventListener('change', (e) => {
+            document.querySelectorAll('.fade-up').forEach(el => {
+                if (e.target.checked) {
+                    observer.observe(el);
+                } else {
+                    observer.unobserve(el);
+                    el.classList.add('visible');
+                }
+            });
+        });
+
+        document.getElementById('toggle-cardHover').addEventListener('change', (e) => {
+            document.querySelectorAll('.card-hover').forEach(el => {
+                if (!e.target.checked) {
+                    el.style.transform = 'none';
+                }
+            });
+        });
+
+        document.getElementById('toggle-whatsapp').addEventListener('change', (e) => {
+            document.getElementById('whatsappBtn').style.display = e.target.checked ? 'flex' : 'none';
+        });
+
+        document.getElementById('toggle-pattern').addEventListener('change', (e) => {
+            document.querySelectorAll('.bg-pattern').forEach(el => {
+                el.style.backgroundImage = e.target.checked ? '' : 'none';
+            });
+        });
+
+        document.getElementById('toggle-heroImage').addEventListener('change', (e) => {
+            document.getElementById('heroImageCol').style.display = e.target.checked ? '' : 'none';
+        });
+
+        document.getElementById('toggle-heroGradient').addEventListener('change', (e) => {
+            const hero = document.getElementById('home');
+            if (e.target.checked) {
+                hero.style.background = `linear-gradient(160deg, #ffffff 0%, var(--warm) 40%, var(--lightBlue) 100%)`;
+            } else {
+                hero.style.background = '#ffffff';
+            }
+        });
+
+        // Reset
+        document.getElementById('btn-reset').addEventListener('click', () => {
+            if (!confirm('Resetar todas as configurações?')) return;
+            
+            // Reset colors
+            Object.keys(colorDefaults).forEach(name => {
+                const input = document.getElementById('color-' + name);
+                input.value = colorDefaults[name];
+                root.style.setProperty(cssVarMap[name], colorDefaults[name]);
+                document.getElementById('hex-' + name).textContent = colorDefaults[name];
+            });
+
+            // Reset sliders
+            const defaults = {
+                sectionPadding: 96, globalPadding: 16, borderRadius: 16,
+                fontSizeBase: 16, headingScale: 1, textOpacity: 0.55,
+                heroMinHeight: 100, cardGap: 32, navHeight: 72,
+                bgOpacity: 1, maxWidth: 1280, shadowIntensity: 0.04,
+                shadowHover: 0.12, transitionSpeed: 0.3
+            };
+            
+            Object.keys(defaults).forEach(id => {
+                const slider = document.getElementById('slider-' + id);
+                if (slider) {
+                    slider.value = defaults[id];
+                    slider.dispatchEvent(new Event('input'));
+                }
+            });
+
+            // Reset font
+            document.getElementById('select-fontFamily').value = 'Inter';
+            root.style.setProperty('--fontFamily', 'Inter');
+            document.body.style.fontFamily = 'Inter, sans-serif';
+
+            // Reset toggles
+            ['toggle-fadeUp', 'toggle-cardHover', 'toggle-whatsapp', 'toggle-pattern', 'toggle-heroImage', 'toggle-heroGradient'].forEach(id => {
+                document.getElementById(id).checked = true;
+                document.getElementById(id).dispatchEvent(new Event('change'));
+            });
+        });
+
+        // Export CSS
+        document.getElementById('btn-export').addEventListener('click', () => {
+            const area = document.getElementById('exportArea');
+            const textarea = document.getElementById('exportCSS');
+            area.classList.toggle('hidden');
+            
+            if (!area.classList.contains('hidden')) {
+                const cs = getComputedStyle(root);
+                const vars = [
+                    '--primary', '--secondary', '--accent', '--accentLight', '--accentRed',
+                    '--warm', '--lightBlue', '--softGray', '--sectionPadding', '--globalPadding',
+                    '--borderRadius', '--fontSizeBase', '--headingScale', '--textOpacity',
+                    '--heroMinHeight', '--cardGap', '--navHeight', '--bgOpacity',
+                    '--fontFamily', '--cardShadow', '--cardShadowHover'
+                ];
+                
+                let css = ':root {\n';
+                vars.forEach(v => {
+                    const val = cs.getPropertyValue(v).trim();
+                    if (val) css += `  ${v}: ${val};\n`;
+                });
+                css += '}';
+                textarea.value = css;
+            }
+        });
+
+        document.getElementById('btn-copy').addEventListener('click', () => {
+            const textarea = document.getElementById('exportCSS');
+            textarea.select();
+            document.execCommand('copy');
+            const btn = document.getElementById('btn-copy');
+            btn.textContent = '✓ Copiado!';
+            setTimeout(() => { btn.textContent = 'Copiar CSS'; }, 2000);
+        });
+    </script>
+</body>
+</html>
+
