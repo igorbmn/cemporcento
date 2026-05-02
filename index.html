@@ -35,7 +35,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full" style="padding-left: var(--globalPadding); padding-right: var(--globalPadding);">
             <div class="flex items-center justify-between h-full" style="padding: 12px 0;">
                 <a href="#home" class="flex items-center space-x-2">
-                    <img src="resources/LOGO%20100%25GENTE%20FINALIZADO%20-CORES.png" alt="100% gente" class="h-20 object-contain">
+                    <img src="resources/5.png" alt="100% gente" class="h-20 object-contain">
                 </a>
                 <div class="hidden lg:flex items-center space-x-10">
                     <a href="#home" class="text-sm font-medium nav-link">O QUÊ</a>
@@ -93,9 +93,20 @@
                     </div>
                 </div>
                 <div id="heroImageCol" class="hidden lg:block relative">
-                    <div class="w-full aspect-square hero-image-frame transform -rotate-1 hover:rotate-0 transition-transform duration-500">
-                        <img src="resources/facebookcover.png" alt="100% gente - Conexão, Empatia, Humanização">
-                    </div>
+    <!-- O segredo está no overflow-hidden e na posição relativa -->
+    <div class="w-full aspect-square hero-image-frame overflow-hidden relative transform -rotate-1 hover:rotate-0 transition-transform duration-500">
+        
+        <!-- A imagem fica em tamanho real (ex: 600px), cravada no centro e ignorando as bordas -->
+        <img src="resources/100%25%20gente%20nova%20logo.png" 
+             alt="100% gente" 
+             class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-none w-[600px] h-[600px] object-contain">
+
+        <!-- ESSA É A MOLDURA QUE "COME" A FOTO: -->
+        <!-- O valor '40px' é o que você aumenta para comer mais a imagem. O 'white' é a cor da borda. -->
+        <div class="absolute inset-0 pointer-events-none" 
+             style="box-shadow: inset 0 0 0 55px #F9FAFB"></div>
+             
+    </div>
                     <div class="absolute -top-4 -right-4 w-20 h-20 rounded-full animate-pulse" style="background: rgba(255,204,0,0.2);"></div>
                     <div class="absolute -bottom-6 -left-6 w-16 h-16 rounded-full animate-pulse" style="background: rgba(255,153,51,0.15); animation-delay: 1s;"></div>
                 </div>
@@ -233,15 +244,20 @@
                 <div class="gold-line mx-auto mb-6"></div>
                 <p class="max-w-2xl mx-auto leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Nossa equipe é formada por profissionais que acreditam que excelência técnica e sensibilidade humana andam juntas.</p>
             </div>
-            <div class="grid md:grid-cols-3" style="gap: var(--cardGap);">
-                <div class="service-card-light overflow-hidden card-hover fade-up group">
-                    <div class="team-img-wrapper h-80 flex items-center justify-center" style="background: linear-gradient(135deg, var(--primary), rgba(27,67,91,0.6));">
-                        <img src="resources/vilani.png" alt="Vilani Batista" class="w-full h-full object-cover relative z-10 group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="p-7 relative">
+            <div class="grid md:grid-cols-2 max-w-4xl mx-auto" style="gap: var(--cardGap);">
+               <div class="service-card-light overflow-hidden card-hover fade-up group">
+    <!-- Aumentei de h-80 para h-[500px] (pode testar h-[600px] se quiser maior ainda) -->
+    <div class="team-img-wrapper h-[500px] flex items-center justify-center" style="background: linear-gradient(135deg, var(--primary), rgba(27,67,91,0.6));">
+        
+        <img src="resources/vilani.jpg" alt="Vilani Batista" 
+             class="w-full h-full object-cover relative z-10 group-hover:scale-105 transition-transform duration-500"
+             style="object-position: center 15%; transform: scaleX(-1);"> <!-- Ajustei para 15% para o rosto ficar bem no topo do retângulo maior -->
+             
+    </div>
+    <div class="p-7 relative">
                         <div class="absolute top-0 left-7 w-12 h-1 rounded-full -translate-y-1/2" style="background: linear-gradient(90deg, var(--secondary), var(--accent));"></div>
                         <h3 class="text-xl font-extrabold" style="color: var(--primary);">Vilani Batista</h3>
-                        <p class="text-sm font-semibold mb-3" style="color: var(--accent);">Sócio Diretor | Propósito & Estratégia</p>
+                        <p class="text-sm font-semibold mb-3" style="color: var(--accent);">Sócia Diretora | Propósito & Estratégia</p>
                         <p class="text-sm leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Especialista em conectar visão de negócio com desenvolvimento humano. Atua em Empreendedorismo, Planejamento Estratégico e RH com foco em Coaching e Transformação Cultural.</p>
                         <div class="flex space-x-2 mt-4">
                             <span class="tag-pill">Estratégia</span>
@@ -251,34 +267,26 @@
                     </div>
                 </div>
                 <div class="service-card-light overflow-hidden card-hover fade-up group">
-                    <div class="h-80 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(27,67,91,0.8), rgba(255,153,51,0.3));">
-                        <svg class="w-24 h-24" style="color: rgba(255,204,0,0.4);" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                    </div>
-                    <div class="p-7 relative">
+    <!-- Aumentei de h-80 para h-[500px] (pode testar h-[600px] se quiser maior ainda) -->
+    <div class="team-img-wrapper h-[500px] flex items-center justify-center" style="background: linear-gradient(135deg, var(--primary), rgba(27,67,91,0.6));">
+        
+        <img src="" alt="Igor Bruno" 
+             class="w-full h-full object-cover relative z-10 group-hover:scale-105 transition-transform duration-500"
+             style="object-position: center 15%;"> <!-- Ajustei para 15% para o rosto ficar bem no topo do retângulo maior -->
+             
+    </div>
+    <div class="p-7 relative">
                         <div class="absolute top-0 left-7 w-12 h-1 rounded-full -translate-y-1/2" style="background: linear-gradient(90deg, var(--accent), var(--accentLight));"></div>
-                        <h3 class="text-xl font-extrabold" style="color: var(--primary);">Ana Carolina</h3>
-                        <p class="text-sm font-semibold mb-3" style="color: var(--accent);">Gerente Contábil | Números com Significado</p>
-                        <p class="text-sm leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Especialista em traduzir dados financeiros em insights humanos. Acredita que contabilidade estratégica é ferramenta para tomar decisões que valorizam pessoas e sustentabilidade.</p>
+                        <h3 class="text-xl font-extrabold" style="color: var(--primary);">Igor Bruno</h3>
+                        <p class="text-sm font-semibold mb-3" style="color: var(--accent);">Produção de Video | Mídias Digitais</p>
+                        <p class="text-sm leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Especialista em construir uma marca afinada com a personalidade da empresa. Acredita que uma identidade visual bem definida é a base de uma comunicação eficaz.</p>
                         <div class="flex space-x-2 mt-4">
-                            <span class="tag-pill">Contábil</span>
-                            <span class="tag-pill">Financeiro</span>
-                            <span class="tag-pill">Insights</span>
+                            <span class="tag-pill">Video</span>
+                            <span class="tag-pill">Mídias Digitais</span>
+                            <span class="tag-pill">Branding</span>
                         </div>
                     </div>
                 </div>
-                <div class="service-card-light overflow-hidden card-hover fade-up group">
-                    <div class="h-80 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(27,67,91,0.6), rgba(255,102,51,0.3));">
-                        <svg class="w-24 h-24" style="color: rgba(255,102,51,0.4);" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                    </div>
-                    <div class="p-7 relative">
-                        <div class="absolute top-0 left-7 w-12 h-1 rounded-full -translate-y-1/2" style="background: linear-gradient(90deg, var(--accentLight), var(--accentRed));"></div>
-                        <h3 class="text-xl font-extrabold" style="color: var(--primary);">Rafael Mendes</h3>
-                        <p class="text-sm font-semibold mb-3" style="color: var(--accent);">Consultor Tributário | Ética & Conformidade</p>
-                        <p class="text-sm leading-relaxed" style="color: rgba(27,67,91, var(--textOpacity));">Advogado tributarista que vê compliance como expressão de respeito. Focado em recuperação de créditos com transparência e governança que protege pessoas e negócios.</p>
-                        <div class="flex space-x-2 mt-4">
-                            <span class="tag-pill">Tributário</span>
-                            <span class="tag-pill">Compliance</span>
-                            <span class="tag-pill">Ética</span>
                         </div>
                     </div>
                 </div>
@@ -383,33 +391,32 @@
                 </div>
 
                 <div class="fade-up">
-                    <form class="service-card-light p-8 space-y-5" onsubmit="handleSubmit(event)">
-                        <div class="grid sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color: rgba(27,67,91, var(--textOpacity));">Nome</label>
-                                <input type="text" placeholder="Seu nome" class="input-field w-full p-3.5 rounded-lg text-sm" required>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color: rgba(27,67,91, var(--textOpacity));">E-mail</label>
-                                <input type="email" placeholder="seu@email.com" class="input-field w-full p-3.5 rounded-lg text-sm" required>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color: rgba(27,67,91, var(--textOpacity));">Assunto</label>
-                            <input type="text" placeholder="Como podemos ajudar?" class="input-field w-full p-3.5 rounded-lg text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color: rgba(27,67,91, var(--textOpacity));">Mensagem</label>
-                            <textarea rows="4" placeholder="Conte um pouco sobre seu desafio ou sonho..." class="input-field w-full p-3.5 rounded-lg text-sm resize-none" required></textarea>
-                        </div>
-                        <button type="submit" id="submitBtn" class="btn-primary w-full py-4 rounded-lg text-sm">
-                            <span id="btnText">Enviar</span>
-                            <span id="btnLoading" class="hidden">Enviando...</span>
-                        </button>
-                        <div id="successMsg" class="hidden text-center p-4 bg-green-50 rounded-lg border border-green-200">
-                            <p class="text-green-700 text-sm font-semibold">✓ Obrigado por conectar! Entraremos em contato com carinho e propósito em breve.</p>
-                        </div>
-                    </form>
+                    <form action="https://formsubmit.co/vilani.batista@cemporcentogente.com" method="POST" class="service-card-light p-8 space-y-5">
+    <!-- Configurações -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://www.cemporcentogente.com">
+    <input type="hidden" name="_subject" value="Novo contato: 100% Gente">
+
+    <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color: rgba(27,67,91, var(--textOpacity));">Nome</label>
+            <input type="text" name="Nome" placeholder="Seu nome" class="input-field w-full p-3.5 rounded-lg text-sm" required>
+        </div>
+        <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color: rgba(27,67,91, var(--textOpacity));">E-mail</label>
+            <input type="email" name="Email" placeholder="seu@email.com" class="input-field w-full p-3.5 rounded-lg text-sm" required>
+        </div>
+    </div>
+    <div>
+        <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color: rgba(27,67,91, var(--textOpacity));">Assunto</label>
+        <input type="text" name="Assunto" placeholder="Como podemos ajudar?" class="input-field w-full p-3.5 rounded-lg text-sm">
+    </div>
+    <div>
+        <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color: rgba(27,67,91, var(--textOpacity));">Mensagem</label>
+        <textarea name="Mensagem" rows="4" placeholder="Conte um pouco sobre seu desafio..." class="input-field w-full p-3.5 rounded-lg text-sm resize-none" required></textarea>
+    </div>
+    <button type="submit" class="btn-primary w-full py-4 rounded-lg text-sm">Enviar</button>
+</form>
                 </div>
             </div>
         </div>
@@ -421,7 +428,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="padding-left: var(--globalPadding); padding-right: var(--globalPadding);">
             <div class="grid md:grid-cols-3 gap-12 mb-12">
                 <div>
-                    <img src="resources/LOGO%20100%25GENTE%20FINALIZADO%20-CORES.png" alt="100% gente" class="h-20 object-contain mb-4 brightness-0 invert">
+                    <img src="resources/5.png" alt="100% gente" class="h-20 object-contain mb-4 brightness-0 invert">
                     <p class="text-white/50 text-sm leading-relaxed mb-4">Consultoria estratégica com propósito. Porque negócios são feitos de pessoas, para pessoas.</p>
                     <div class="flex space-x-3">
                         <a href="https://www.facebook.com/share/1GvBZYCXpF/" target="_blank" rel="noopener noreferrer" class="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-secondary/20 transition">

@@ -1,3 +1,15 @@
+/* TRAVA DE ROLAGEM HORIZONTAL */
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden !important;
+    position: relative;
+}
+
+/* Evita que elementos decorativos muito grandes vazem no mobile */
+* {
+    box-sizing: border-box;
+}
+
 :root {
     --primary: #1B435B;
     --secondary: #FFCC00;
